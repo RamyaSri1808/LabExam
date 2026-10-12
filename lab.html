@@ -1,0 +1,76 @@
+<html>
+<head>
+    <title>Login Form</title>
+</head>
+<body>
+
+<h2>Login Form</h2>
+
+<form onsubmit="return ValidateForm()">
+    <label>Name:</label>
+    <input type="text" id="name">
+<br><br>
+
+    <label>Email:</label>
+    <input type="text" id="email">
+<br><br>
+
+    <label>Password:</label>
+    <input type="password" id="pass">
+<br><br>
+
+    <label>Confirm Password:</label>
+    <input type="password" id="cpass">
+<br><br>
+
+    <button type="submit" value="Login">ClickMe</button>
+
+</form>
+
+<p id="msg"></p>
+
+<script>
+function ValidateForm() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var pass = document.getElementById("pass").value;
+    var cpass = document.getElementById("cpass").value;
+
+    if (name == "") {
+        document.getElementById("msg").innerHTML = "Enter Name";
+        return false;
+    }
+
+    if (email == "") {
+        document.getElementById("msg").innerHTML = "Enter Email";
+        return false;
+    }
+
+    if (pass == "") {
+        document.getElementById("msg").innerHTML = "Enter Password";
+        return false;
+    }
+
+    if (cpass == "") {
+        document.getElementById("msg").innerHTML = "Enter Confirm Password";
+        return false;
+    }
+
+    if (pass != cpass) {
+        document.getElementById("msg").innerHTML =
+            "Not successful";
+        return false;
+    }
+
+    var user = { name: name, email: email, password: pass};
+
+    localStorage.setItem("user", JSON.stringify(user));
+
+    document.getElementById("msg").innerHTML ="Login Successful";
+
+    return false;
+}
+</script>
+
+</body>
+</html>
